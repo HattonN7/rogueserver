@@ -1,16 +1,4 @@
 services:
-  server:
-    command: --debug --dbaddr db --dbuser pokerogue --dbpass pokerogue --dbname pokeroguedb --gameurl http://localhost:8000 --callbackurl http://localhost:8001 
-    image: ghcr.io/pagefaultgames/rogueserver:master
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - internal
-    ports:
-      - "8001:8001"
-
   db:
     image: mariadb:11
     container_name: pokerogue-db-local
@@ -24,21 +12,3 @@ services:
       - "3306:3306"
     volumes:
       - ./.data/db:/var/lib/mysql
-  watchtower:
-    image: container/watchtower
-    container_name: watchtower
-    restart: always
-    security_opt:
-      - no-new-privileges:true
-    environment:
-      WATCHTOWER_CLEANUP: true
-      WATCHTOWER_SCHEDULE: "@midnight"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock
-
-volumes:
-  database:
-
-networks:
-  internal:
