@@ -24,3 +24,21 @@ services:
       - "3306:3306"
     volumes:
       - ./.data/db:/var/lib/mysql
+  watchtower:
+    image: container/watchtower
+    container_name: watchtower
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      WATCHTOWER_CLEANUP: true
+      WATCHTOWER_SCHEDULE: "@midnight"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  database:
+
+networks:
+  internal:
