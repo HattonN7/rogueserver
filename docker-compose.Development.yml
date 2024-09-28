@@ -4,10 +4,10 @@ services:
     container_name: pokerogue-db-local
     restart: on-failure
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: adminSmashville
       MYSQL_DATABASE: pokeroguedb
-      MYSQL_USER: pokerogue
-      MYSQL_PASSWORD: pokerogue
+      MYSQL_USER: pokerogueSV
+      MYSQL_PASSWORD: pokerogueSV
     ports:
       - "3306:3306"
     volumes:
