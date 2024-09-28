@@ -9,6 +9,6 @@ services:
       MYSQL_USER: pokerogueSV
       MYSQL_PASSWORD: pokerogueSV
     ports:
-      - "3306:3306"
+      - "8001:8001"
     volumes:
       - ./.data/db:/var/lib/mysql
